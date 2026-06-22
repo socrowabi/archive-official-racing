@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>极速赛车 · 竞速资料索引</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: linear-gradient(145deg, #fde7c3 0%, #fbd5a5 30%, #f7b977 70%, #e8995c 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      line-height: 1.6;
+      color: #2c2015;
+    }
+    .magazine-wrap {
+      max-width: 1040px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    /* 主卡片容器 — 暖白质感 */
+    .card {
+      background: rgba(255, 248, 238, 0.92);
+      backdrop-filter: blur(2px);
+      border-radius: 2rem;
+      padding: 2.8rem 2.5rem;
+      box-shadow: 0 16px 40px -10px rgba(140, 70, 20, 0.25), 0 4px 12px rgba(0,0,0,0.03);
+      transition: box-shadow 0.2s ease;
+      border: 1px solid rgba(255, 230, 200, 0.5);
+    }
+    /* 首页横幅 — 杂志跨页感 */
+    .hero {
+      margin: -0.6rem -0.6rem 2.2rem -0.6rem;
+      background: linear-gradient(135deg, #b45d2c 0%, #d9823a 60%, #e8a45a 100%);
+      border-radius: 2rem 2rem 1.6rem 1.6rem;
+      padding: 2rem 2.2rem 1.8rem 2.2rem;
+      color: #fef6ea;
+      position: relative;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      line-height: 1.2;
+      margin-bottom: 0.35rem;
+      text-shadow: 0 2px 6px rgba(60, 25, 0, 0.25);
+    }
+    .hero .sub {
+      font-size: 1.1rem;
+      opacity: 0.88;
+      border-left: 3px solid #fad5a5;
+      padding-left: 1rem;
+      font-weight: 380;
+      margin-top: 0.4rem;
+    }
+    .hero .issue-tag {
+      display: inline-block;
+      background: rgba(255, 215, 160, 0.25);
+      backdrop-filter: blur(2px);
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      letter-spacing: 0.3px;
+      margin-top: 0.8rem;
+      border: 1px solid rgba(255, 240, 210, 0.4);
+    }
+    /* 信息密度排版 */
+    .section-title {
+      font-weight: 580;
+      font-size: 1.3rem;
+      margin: 1.8rem 0 0.9rem 0;
+      color: #5a3520;
+      letter-spacing: -0.01em;
+      border-bottom: 2px solid #eacbad;
+      padding-bottom: 0.25rem;
+      display: inline-block;
+    }
+    .body-copy {
+      margin-bottom: 1.4rem;
+    }
+    .body-copy p {
+      margin-bottom: 0.9rem;
+    }
+    .body-copy strong {
+      color: #7a4b28;
+      font-weight: 540;
+    }
+    /* 紧凑列表／关键词风格 */
+    .feature-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem 1.8rem;
+      margin: 0.8rem 0 1.2rem 0;
+    }
+    .feature-item {
+      flex: 1 1 200px;
+      background: #fcf3e8;
+      padding: 0.9rem 1.1rem;
+      border-radius: 1.2rem;
+      border-left: 8px solid #d9823a;
+      box-shadow: 0 2px 6px rgba(140, 60, 10, 0.04);
+      font-size: 0.95rem;
+    }
+    .feature-item span {
+      display: block;
+      font-weight: 520;
+      font-size: 1rem;
+      color: #402818;
+      margin-bottom: 0.25rem;
+    }
+    /* FAQ 摘要 — 杂志资料盒 */
+    .faq-preview {
+      background: #fcf3e6;
+      border-radius: 1.4rem;
+      padding: 1.2rem 1.5rem;
+      margin: 1.6rem 0 1.2rem 0;
+      border: 1px solid #eddcc8;
+    }
+    .faq-preview details {
+      margin: 0.5rem 0;
+    }
+    .faq-preview summary {
+      font-weight: 520;
+      color: #5e351b;
+      cursor: default;
+      padding: 0.2rem 0;
+    }
+    .faq-preview details p {
+      margin-left: 1rem;
+      color: #4d3320;
+      font-size: 0.92rem;
+    }
+    /* 页尾访问提示 */
+    .footer-note {
+      margin-top: 2.4rem;
+      padding-top: 1.2rem;
+      border-top: 2px dashed #dbaa7a;
+      text-align: left;
+      font-size: 0.98rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.4rem 0.8rem;
+    }
+    .footer-note a {
+      display: inline-block;
+      background: #c4692a;
+      color: #fef3e4;
+      text-decoration: none;
+      padding: 0.3rem 1.6rem 0.4rem 1.6rem;
+      border-radius: 40px;
+      font-weight: 510;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+      box-shadow: 0 3px 6px rgba(120, 55, 10, 0.15);
+      transition: background 0.15s, box-shadow 0.15s;
+      border: 1px solid rgba(255, 215, 160, 0.25);
+      margin-right: 0.4rem;
+    }
+    .footer-note a:hover {
+      background: #b1561a;
+      box-shadow: 0 5px 10px rgba(130, 55, 5, 0.2);
+    }
+    .footer-note .meta {
+      color: #5a3d28;
+      opacity: 0.7;
+      font-size: 0.88rem;
+      margin-left: auto;
+    }
+    /* 响应式 */
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem 0.8rem;
+      }
+      .card {
+        padding: 1.8rem 1.2rem;
+        border-radius: 1.6rem;
+      }
+      .hero {
+        margin: -0.2rem -0.2rem 1.6rem -0.2rem;
+        padding: 1.4rem 1.2rem;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero .sub {
+        font-size: 0.95rem;
+      }
+      .feature-grid {
+        flex-direction: column;
+        gap: 0.9rem;
+      }
+      .feature-item {
+        flex: 1 1 auto;
+      }
+      .footer-note {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .footer-note .meta {
+        margin-left: 0;
+        margin-top: 0.3rem;
+      }
+    }
+    /* 小细节 */
+    .quiet-link {
+      color: #864f28;
+      text-decoration-color: #dbaa7a;
+      text-underline-offset: 4px;
+      font-weight: 470;
+    }
+  </style>
+</head>
+<body>
+<div class="magazine-wrap">
+  <div class="card">
+    <!-- 首页横幅 -->
+    <div class="hero">
+      <h1>极速赛车 · 竞速档案</h1>
+      <div class="sub">资料整理 · 赛道索引 · 赛季简报</div>
+      <div class="issue-tag">2025 · 特辑</div>
+    </div>
+
+    <!-- 背景说明 — 从资料整理角度切入 -->
+    <div class="body-copy">
+      <p>从早期场地赛到当代公路竞速，<strong>极速赛车</strong>领域积累了庞大的技术文献、比赛记录与规则演变。本页以资料卡片形式，整理关键信息层。以下内容基于公开赛事档案及技术资料汇编，不涉及未经核实的性能数据，侧重呈现竞速运动的结构化参考。</p>
+    </div>
+
+    <!-- 三段自然介绍（特点／场景／索引） -->
+    <div class="section-title">▎动力单元与规则演进</div>
+    <div class="body-copy">
+      <p>现代<strong>极速赛车</strong>的动力架构已从自然吸气过渡至混合增压，能量回收系统与空气动力学套件成为圈速差异的核心变量。国际汽联（FIA）及各国协会持续修订技术清单，例如燃料流速限制、底盘刚度测试标准等，资料索引时需关注每年发布的《技术指令》附录。对于爱好者而言，理解<strong>极速赛车</strong>的类别（GT3、原型车、单一品牌杯赛）有助于快速定位对应规则手册。</p>
+    </div>
+
+    <div class="section-title">▎赛道场景与数据特征</div>
+    <div class="body-copy">
+      <p>每条赛道的弯角组合、海拔落差及路面涂层直接影响<strong>极速赛车</strong>的调校偏向。例如斯帕·弗朗科尔尚的 Eau Rouge 弯道要求极高的下压力设定，而蒙扎的长直道则侧重低阻尾速。在资料整理中，常将赛道分为“高速型”“技术型”“混合型”三大类，并记录历年最佳圈速、轮胎磨损指数与气温关联。以下为常见赛道数据维度（示例）：</p>
+    </div>
+
+    <!-- 用 feature-grid 展示类似索引信息（非列表式） -->
+    <div class="feature-grid">
+      <div class="feature-item"><span>🏁 弯角类型</span>高速连续弯 / 锐角回头弯 / 组合S弯</div>
+      <div class="feature-item"><span>📊 圈速分布</span>排位赛1:20~1:45区间，正赛衰退约0.8%</div>
+      <div class="feature-item"><span>🧩 调校参考</span>防倾杆硬度、尾翼攻角、胎压三档预设</div>
+    </div>
+
+    <div class="section-title">▎赛季信息索引</div>
+    <div class="body-copy">
+      <p>近年<strong>极速赛车</strong>赛程覆盖欧洲、亚洲、美洲及中东地区，每赛季包含约20~25场分站。资料归档时常用的分类标签包括：<strong>分站成绩表</strong>、<strong>车手积分推移</strong>、<strong>技术违规记录</strong>、<strong>轮胎供应商策略</strong>。通过公开的赛事周报与赛后技术报告，可建立清晰的赛季时间线。本站作为信息聚合参考点，持续收录相关背景材料与规则变更摘要。</p>
+    </div>
+
+    <!-- FAQ 摘要 — 增加索引感 -->
+    <div class="faq-preview">
+      <details>
+        <summary>📋 资料常见问题（FAQ 摘要）</summary>
+        <p><strong>Q：如何查找最新技术指令？</strong> 建议优先查阅各赛事官方公布的技术文件，或使用已归档的赛季技术手册。</p>
+        <p><strong>Q：不同组别赛车的最低重量标准？</strong> 根据2025年 GT3 规则，最低车重约 1240kg（含车手及装备），原型车则依动力系统有所浮动。</p>
+        <p><strong>Q：赛道纪录是否随时更新？</strong> 是的，每次分站赛后官方会修正圈速列表，建议以最终赛会公报为准。</p>
+      </details>
+    </div>
+
+    <!-- 页尾访问提示 — 自然嵌入“极速赛车”链接 -->
+    <div class="footer-note">
+      <span>本专题为竞速资料摘要，更多赛事分析、规则文档与赛道档案请浏览</span>
+      <a href="https://official-racing.com">极速赛车</a>
+      <span class="meta">信息版本 2025.03 · 持续汇编</span>
+    </div>
+
+    <!-- 额外一个隐形索引行，体现专业语气 -->
+    <div style="margin-top: 1rem; font-size: 0.82rem; color: #6b4f38; opacity: 0.65; border-top: 1px solid #edd5bd; padding-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+      <span>参考资料：FIA 技术清单 · 赛道指南 · 赛季档案</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>
